@@ -2,7 +2,7 @@
 export const getNoun = (num, word1, word2, word3) => {
   // Абсолютное значение числа, чтобы обработать отрицательные числа
   const absoluteNumber = Math.abs(num);
-
+  
   // Последние две цифры числа
   const lastTwoDigits = absoluteNumber % 100;
 

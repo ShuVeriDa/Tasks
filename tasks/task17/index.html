@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="input" placeholder="Введите адрес">
+        <ul id="list"></ul>
+    </div>
+
+    <script>
+      const addressInput = document.getElementById('input');
+      const suggestionsList = document.getElementById('list');
+
+      //Функция debounce
+      function createDebouncedFunc(fn, delay) {
+        let timeout;
+        return function (...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            fn(...args);
+          }, delay);
+        };
+      }
+
+      // Функция для выполнения геокодинга
+      async function geocodeAddress(address) {
+        // Замените этот код на вызов нужного API.
+        const apiKey = 'd744177c-e307-425c-938e-7c31fe533f9e';
+        const response = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${apiKey}&geocode=${address}&format=json`);
+        const data = await response.json();
+        return data.response.GeoObjectCollection.featureMember.map(item => item.GeoObject.name);
+      }
+
+      // Функция для отображения предложений в выпадающем списке
+      function displayList(sugList) {
+        const suggestionsList = document.getElementById('list');
+        suggestionsList.innerHTML = '';
+        sugList.forEach(l => {
+          const listItem = document.createElement('li');
+          listItem.textContent = l;
+          listItem.addEventListener('click', () => {
+            document.getElementById('input').value = l;
+            suggestionsList.innerHTML = '';
+          });
+          suggestionsList.appendChild(listItem);
+        });
+      }
+
+      const debouncedGeocode = createDebouncedFunc(async (address) => {
+        if (address.trim() === '') {
+          suggestionsList.innerHTML = '';
+          return;
+        }
+
+        const suggestions = await geocodeAddress(address);
+        displayList(suggestions);
+      }, 300); // Задержка в миллисекундах для дебаунсинга
+
+      addressInput.addEventListener('input', () => {
+        const address = addressInput.value;
+        debouncedGeocode(address);
+      });
+    </script>
+</body>
+</html>

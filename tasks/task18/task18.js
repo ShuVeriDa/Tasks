@@ -9,7 +9,7 @@ function getLocalStorageFreeSpace() {
       const freeSpace = (totalSize - currentStorageSize) / (1024 * 1024);
       // Возвращаем доступное место
       return freeSpace.toFixed(3)
-    }
+    }``
     return null; // localStorage не поддерживается
   } catch (e) {
     return null; // Произошла ошибка при получении доступного места

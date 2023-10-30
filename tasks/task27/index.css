@@ -1,0 +1,11 @@
+.element {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+.animation {
+    transform: translateY(200px) translateX(200px) scale(1.5);
+}

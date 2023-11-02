@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            min-height: 900px;
+        }
+
+        #widget {
+            width: 500px;
+            height: 800px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+        }
+
+        #postList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #postList li {
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #loading {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+    <script src="task19-20.js"></script>
+
+</head>
+<body>
+
+<div id="widget">
+    <button onclick="authenticateVK()">Авторизоваться через Вконтакте</button>
+    <ul id="postList"></ul>
+
+</div>
+<div id="loading">Идет загрузка...</div>
+<script>
+  handleAuthentication();
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-function getLocalStorageFreeSpace() {
+const getLocalStorageFreeSpace = () => {
   try {
     if ('localStorage' in window && window['localStorage'] !== null) {
       // Получаем текущий размер данных в localStorage и переводим в байты

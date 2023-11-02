@@ -1,7 +1,6 @@
 {
   "type": "module",
   "dependencies": {
-    "moment": "^2.29.4",
-    "vk-api": "^0.1.0"
+    "moment": "^2.29.4"
   }
 }
